@@ -1,0 +1,5 @@
+{
+	"DBconnString": "sqlite:./fibos_chain.db",
+	"emitterNodePort": 8870,
+	"onblockEnable": false
+}
