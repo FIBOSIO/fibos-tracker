@@ -1,8 +1,8 @@
 {
 	"name": "fibos-tracker",
 	"main": "./lib/",
-	"version": "1.0.0",
-	"description": "fibos chain data storage and api iframe",
+	"version": "1.0.1",
+	"description": "a tracking data and api service based on FIBOS/EOS blockchain nodes.",
 	"repository": "",
 	"keywords": "",
 	"author": "an.wu@d3j.io",
