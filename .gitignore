@@ -1,0 +1,3 @@
+examples/data/
+*.db*
+node_modules

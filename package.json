@@ -1,0 +1,15 @@
+{
+	"name": "fibos-tracker",
+	"main": "./lib/",
+	"version": "1.0.0",
+	"description": "fibos chain data storage and api iframe",
+	"repository": "",
+	"keywords": "",
+	"author": "an.wu@d3j.io",
+	"license": "ISC",
+	"dependencies": {
+		"fib-app": "1.10.0",
+		"fibos.js": "^0.3.1",
+		"viz.js": "1.8.0"
+	}
+}

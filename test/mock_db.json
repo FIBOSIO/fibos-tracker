@@ -1,0 +1,285 @@
+{
+	"receipt": {
+		"receiver": "eosio",
+		"act_digest": "19246581932f742135f42d32f8891a9a48e584f9d99ac2584b902c898571bf2d",
+		"global_sequence": "82",
+		"recv_sequence": "61",
+		"auth_sequence": [
+			["fibos", "17"]
+		],
+		"code_sequence": "1",
+		"abi_sequence": "1"
+	},
+	"act": {
+		"account": "eosio",
+		"name": "buyrambytes",
+		"authorization": [{
+			"actor": "fibos",
+			"permission": "active"
+		}],
+		"data": {
+			"payer": "fibos",
+			"receiver": "testnetbppa1",
+			"bytes": "2097152"
+		},
+		"hex_data": "00000000004c8f5b104cad27ab99b1ca00002000"
+	},
+	"context_free": false,
+	"elapsed": "7335",
+	"cpu_usage": "0",
+	"console": "",
+	"total_cpu_usage": "0",
+	"trx_id": "b6663a27007a38f7f9d3afc1dd3c817bb9cd167d4ec9a1facbfb2a7e36480333",
+	"block_num": "23",
+	"block_time": "2018-10-26T08:23:11.500",
+	"producer_block_id": "0000001705fb63365e33fd8ab5ced683821eccc60183ebfb4d80da0eb948fce1",
+	"account_ram_deltas": [],
+	"inline_traces": [{
+		"receipt": {
+			"receiver": "eosio.token",
+			"act_digest": "0567eb6dc67601fc44c42671fb66b31e751f73f97c78b6cfc77f7df326b6dab3",
+			"global_sequence": "83",
+			"recv_sequence": "15",
+			"auth_sequence": [
+				["eosio.ram", "6"],
+				["fibos", "18"]
+			],
+			"code_sequence": "1",
+			"abi_sequence": "1"
+		},
+		"act": {
+			"account": "eosio.token",
+			"name": "transfer",
+			"authorization": [{
+				"actor": "fibos",
+				"permission": "active"
+			}, {
+				"actor": "eosio.ram",
+				"permission": "active"
+			}],
+			"data": {
+				"from": "fibos",
+				"to": "eosio.ram",
+				"quantity": "303.6590 FO",
+				"memo": "buy ram"
+			},
+			"hex_data": "00000000004c8f5b000090e602ea3055ae552e000000000004464f0000000000076275792072616d"
+		},
+		"context_free": false,
+		"elapsed": "5170",
+		"cpu_usage": "0",
+		"console": "",
+		"total_cpu_usage": "0",
+		"trx_id": "b6663a27007a38f7f9d3afc1dd3c817bb9cd167d4ec9a1facbfb2a7e36480333",
+		"block_num": "23",
+		"block_time": "2018-10-26T08:23:11.500",
+		"producer_block_id": "0000001705fb63365e33fd8ab5ced683821eccc60183ebfb4d80da0eb948fce1",
+		"account_ram_deltas": [],
+		"inline_traces": [{
+			"receipt": {
+				"receiver": "fibos",
+				"act_digest": "0567eb6dc67601fc44c42671fb66b31e751f73f97c78b6cfc77f7df326b6dab3",
+				"global_sequence": "84",
+				"recv_sequence": "5",
+				"auth_sequence": [
+					["eosio.ram", "7"],
+					["fibos", "19"]
+				],
+				"code_sequence": "1",
+				"abi_sequence": "1"
+			},
+			"act": {
+				"account": "eosio.token",
+				"name": "transfer",
+				"authorization": [{
+					"actor": "fibos",
+					"permission": "active"
+				}, {
+					"actor": "eosio.ram",
+					"permission": "active"
+				}],
+				"data": {
+					"from": "fibos",
+					"to": "eosio.ram",
+					"quantity": "303.6590 FO",
+					"memo": "buy ram"
+				},
+				"hex_data": "00000000004c8f5b000090e602ea3055ae552e000000000004464f0000000000076275792072616d"
+			},
+			"context_free": false,
+			"elapsed": "26",
+			"cpu_usage": "0",
+			"console": "",
+			"total_cpu_usage": "0",
+			"trx_id": "b6663a27007a38f7f9d3afc1dd3c817bb9cd167d4ec9a1facbfb2a7e36480333",
+			"block_num": "23",
+			"block_time": "2018-10-26T08:23:11.500",
+			"producer_block_id": "0000001705fb63365e33fd8ab5ced683821eccc60183ebfb4d80da0eb948fce1",
+			"account_ram_deltas": [],
+			"inline_traces": []
+		}, {
+			"receipt": {
+				"receiver": "eosio.ram",
+				"act_digest": "0567eb6dc67601fc44c42671fb66b31e751f73f97c78b6cfc77f7df326b6dab3",
+				"global_sequence": "85",
+				"recv_sequence": "2",
+				"auth_sequence": [
+					["eosio.ram", "8"],
+					["fibos", "20"]
+				],
+				"code_sequence": "1",
+				"abi_sequence": "1"
+			},
+			"act": {
+				"account": "eosio.token",
+				"name": "transfer",
+				"authorization": [{
+					"actor": "fibos",
+					"permission": "active"
+				}, {
+					"actor": "eosio.ram",
+					"permission": "active"
+				}],
+				"data": {
+					"from": "fibos",
+					"to": "eosio.ram",
+					"quantity": "303.6590 FO",
+					"memo": "buy ram"
+				},
+				"hex_data": "00000000004c8f5b000090e602ea3055ae552e000000000004464f0000000000076275792072616d"
+			},
+			"context_free": false,
+			"elapsed": "16",
+			"cpu_usage": "0",
+			"console": "",
+			"total_cpu_usage": "0",
+			"trx_id": "b6663a27007a38f7f9d3afc1dd3c817bb9cd167d4ec9a1facbfb2a7e36480333",
+			"block_num": "23",
+			"block_time": "2018-10-26T08:23:11.500",
+			"producer_block_id": "0000001705fb63365e33fd8ab5ced683821eccc60183ebfb4d80da0eb948fce1",
+			"account_ram_deltas": [],
+			"inline_traces": []
+		}]
+	}, {
+		"receipt": {
+			"receiver": "eosio.token",
+			"act_digest": "0343d6be75f438dcf7f69209e3d055750e1312574cff112b4011988af50c476a",
+			"global_sequence": "86",
+			"recv_sequence": "16",
+			"auth_sequence": [
+				["fibos", "21"]
+			],
+			"code_sequence": "1",
+			"abi_sequence": "1"
+		},
+		"act": {
+			"account": "eosio.token",
+			"name": "transfer",
+			"authorization": [{
+				"actor": "fibos",
+				"permission": "active"
+			}],
+			"data": {
+				"from": "fibos",
+				"to": "eosio.ramfee",
+				"quantity": "1.5260 FO",
+				"memo": "ram fee"
+			},
+			"hex_data": "00000000004c8f5ba0d492e602ea30559c3b00000000000004464f00000000000772616d20666565"
+		},
+		"context_free": false,
+		"elapsed": "1287",
+		"cpu_usage": "0",
+		"console": "",
+		"total_cpu_usage": "0",
+		"trx_id": "b6663a27007a38f7f9d3afc1dd3c817bb9cd167d4ec9a1facbfb2a7e36480333",
+		"block_num": "23",
+		"block_time": "2018-10-26T08:23:11.500",
+		"producer_block_id": "0000001705fb63365e33fd8ab5ced683821eccc60183ebfb4d80da0eb948fce1",
+		"account_ram_deltas": [],
+		"inline_traces": [{
+			"receipt": {
+				"receiver": "eosio.token",
+				"act_digest": "1b6fe05a8243a5b01e49f0ff23acd3632f4678e96d663f3ffe07a21e90b394f5",
+				"global_sequence": "87",
+				"recv_sequence": "17",
+				"auth_sequence": [
+					["fibos", "22"]
+				],
+				"code_sequence": "1",
+				"abi_sequence": "1"
+			},
+			"act": {
+				"account": "eosio.token",
+				"name": "exretire",
+				"authorization": [{
+					"actor": "fibos",
+					"permission": "active"
+				}],
+				"data": {
+					"from": "fibos",
+					"quantity": {
+						"quantity": "1.5260 FO",
+						"contract": "eosio"
+					},
+					"memo": "issue tokens for producer pay and savings"
+				},
+				"hex_data": "00000000004c8f5b9c3b00000000000004464f00000000000000000000ea305529697373756520746f6b656e7320666f722070726f64756365722070617920616e6420736176696e6773"
+			},
+			"context_free": false,
+			"elapsed": "21028",
+			"cpu_usage": "0",
+			"console": "",
+			"total_cpu_usage": "0",
+			"trx_id": "b6663a27007a38f7f9d3afc1dd3c817bb9cd167d4ec9a1facbfb2a7e36480333",
+			"block_num": "23",
+			"block_time": "2018-10-26T08:23:11.500",
+			"producer_block_id": "0000001705fb63365e33fd8ab5ced683821eccc60183ebfb4d80da0eb948fce1",
+			"account_ram_deltas": [],
+			"inline_traces": [{
+				"receipt": {
+					"receiver": "eosio.token",
+					"act_digest": "add485c5e6d6c445fbf8ad402390492946451b54fb5a622de15dea0e40f674d5",
+					"global_sequence": "88",
+					"recv_sequence": "18",
+					"auth_sequence": [
+						["eosio.token", "9"]
+					],
+					"code_sequence": "1",
+					"abi_sequence": "1"
+				},
+				"act": {
+					"account": "eosio.token",
+					"name": "snapshot",
+					"authorization": [{
+						"actor": "eosio.token",
+						"permission": "active"
+					}],
+					"data": {
+						"contract": "eosio",
+						"max_supply": "100000000000.0000 FO",
+						"cw": 0.11000000006253197,
+						"max_exchange": "9999999996.9481 FO",
+						"supply": "368598570.2285 FO",
+						"reserve_supply": "4999999996.9555 FO",
+						"connector_balance": "500000.0000 EOS",
+						"reserve_connector_balance": "550000.0000 EOS"
+					},
+					"hex_data": "0000000000ea30550080c6a47e8d030004464f0000000000581dd4c2f528bc3fc9c87910f35a000004464f00000000008d51de355a03000004464f000000000013a93c88792d000004464f000000000000f2052a0100000004454f53000000000057d3470100000004454f5300000000"
+				},
+				"context_free": false,
+				"elapsed": "2906",
+				"cpu_usage": "0",
+				"console": "",
+				"total_cpu_usage": "0",
+				"trx_id": "b6663a27007a38f7f9d3afc1dd3c817bb9cd167d4ec9a1facbfb2a7e36480333",
+				"block_num": "23",
+				"block_time": "2018-10-26T08:23:11.500",
+				"producer_block_id": "0000001705fb63365e33fd8ab5ced683821eccc60183ebfb4d80da0eb948fce1",
+				"account_ram_deltas": [],
+				"inline_traces": []
+			}]
+		}]
+	}],
+	"producer": "eosio"
+}
