@@ -214,13 +214,55 @@ tracker.use 参数定义：
 
 | key             | type   | desc | params| 
 |---------------------|--------|--------|--------|
-| defines     | Function |使用 ORM 模型定义数据表，提供 API 访问   | `(db)=>{}`参数 db 是 ORM 对象，可用于操作数据层 | 
-| hooks | Function | 支持过滤 action 数据的 hook function     | `(db,messages)=>{}` 参数 db 是 ORM 对象，参数 messages 是 action Table 对象集合 |
+| defines     | Function |使用 ORM 模型定义数据表，提供 API 访问   | `(db) => {}`参数 db 是 ORM 对象，可用于操作数据层 | 
+| hooks | Function | 支持过滤 action 数据的 hook function     | `(db, messages) => {}` 参数 db 是 ORM 对象，参数 messages 是 action 原始数据集合 |
 
 hooks 的过滤规则说明：
 
 - 过滤某个合约，如：`eosio.token`
 - 过滤某个合约的 action，如：`eosio.token/transfer`
+
+
+hooks 的 messages 数据说明：
+
+由于 emitter 传递的数据是一个 actions，更多的时候 actions 内包含 一个或多个 inline_actions，并且以树型结构层叠。
+
+为了方便 hooks 业务研发，传递 messages 时做了优化：
+
+- 满足过滤规则的所有 action 合并成数组传递
+- 数组内每一个满足过滤规则的 action 包含 本层 action 以下所有 inline_action，并且如果存在上层 action，将携带 parent 属性，标识上层 parent 的 action 数据。
+
+
+注：每层 db_id 是该层 action 数据库 id。
+
+举一个返回示例结构：
+
+```
+[
+  {
+    "db_id": 1,
+    "inline_traces": [
+      {
+        "db_id": 2,
+        "parent": ... db_id => 1
+        "inline_traces": [
+          {
+            "db_id": 3,
+            "parent": ... db_id => 2
+                "parent": ... db_id => 1
+          },
+          {
+            "db_id": 4,
+            "parent": ... db_id => 2
+                "parent": ... db_id => 1
+          }
+        ]
+      }
+    ]
+  }
+]
+
+```
 
 
 ## Example 快速应用
