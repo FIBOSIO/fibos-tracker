@@ -5,6 +5,35 @@ const fs = require("fs");
 	if (fs.exists("./fibos_chain.db" + k)) fs.unlink("./fibos_chain.db" + k);
 });
 
+let setLogs = (logPath) => {
+	if (!fs.exists(logPath)) fs.mkdir(logPath);
+
+	console.add([{
+		type: "console",
+		levels: [console.FATAL, console.ALERT, console.CRIT, console.ERROR, console.WARN, console.NOTICE, console.INFO],
+	}, {
+		type: "file",
+		levels: [console.FATAL, console.ALERT, console.CRIT, console.ERROR],
+		path: logPath + "error.log",
+		split: "hour",
+		count: 128
+	}, {
+		type: "file",
+		levels: [console.WARN],
+		path: logPath + "warn.log",
+		split: "hour",
+		count: 128
+	}, {
+		type: "file",
+		levels: [console.INFO],
+		path: logPath + "access.log",
+		split: "hour",
+		count: 128
+	}]);
+}
+
+setLogs("./logs/");
+
 // [fibos]
 const fibos = require("fibos");
 fibos.config_dir = "./data";
@@ -29,7 +58,6 @@ fibos.load("chain", {
 });
 
 fibos.load("chain_api");
-fibos.load("emitter");
 
 //[fibos-tracker]
 const Tracker = require("../");
@@ -38,11 +66,7 @@ const tracker = new Tracker();
 
 tracker.use(require("./addons/eosio_token_transfers.js"));
 
-fibos.on('block', tracker.emitter.block);
-
-fibos.on('transaction', tracker.emitter.transaction);
-
-fibos.on('irreversible_block', tracker.emitter.irreversible_block);
+tracker.emitter(fibos);
 
 fibos.start();
 
