@@ -41,7 +41,7 @@ let hooks = {
 		try {
 			db.trans(() => {
 				messages.forEach((m) => {
-					eosio_token_transfers.createSync(m.data);
+					eosio_token_transfers.createSync(m.act.data);
 				});
 			});
 		} catch (e) {

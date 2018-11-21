@@ -1,4 +1,5 @@
 // [clean env]
+
 const fs = require("fs");
 ["", "\-shm", "\-wal"].forEach(function(k) {
 	if (fs.exists("./fibos_chain.db" + k)) fs.unlink("./fibos_chain.db" + k);
@@ -16,7 +17,7 @@ fibos.load("http", {
 });
 
 fibos.load("net", {
-	"p2p-peer-address": ["p2p-testnet.fibos.fo:9870"],
+	"p2p-peer-address": ["127.0.0.1:9801"],
 	"p2p-listen-endpoint": "0.0.0.0:9870"
 });
 
@@ -37,9 +38,11 @@ const tracker = new Tracker();
 
 tracker.use(require("./addons/eosio_token_transfers.js"));
 
-fibos.on('action', tracker.emitter((message, e) => {
-	// fibos.stop();
-}));
+fibos.on('block', tracker.emitter.block);
+
+fibos.on('transaction', tracker.emitter.transaction);
+
+fibos.on('irreversible_block', tracker.emitter.irreversible_block);
 
 fibos.start();
 
