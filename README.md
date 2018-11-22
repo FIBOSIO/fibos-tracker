@@ -34,7 +34,7 @@ fibos-tracker 是一个 FIBOS 区块链数据 API 服务框架，基于 [fib-app
 
 ## FIBOS 版本支持
 
-支持: `v1.3.1.4+`
+支持: `v1.3.1.7+`
 
 快速安装: `curl -s https://fibos.io/download/installer.sh | sh`
 
