@@ -1,3 +1,5 @@
 examples/data/
+examples/logs/
 *.db*
 node_modules
+logs/
