@@ -1,7 +1,7 @@
 const test = require('test');
 test.setup();
 
-let id = 11;
+let id = 13;
 
 describe("blocks case", () => {
 
@@ -48,7 +48,7 @@ describe("blocks case", () => {
 			}`).json();
 
 		assert.equal(r.data.blocks.id, id);
-		assert.equal(r.data.blocks.transactions.length, 1);
+		assert.equal(r.data.blocks.transactions.length, 2);
 	});
 
 	it("find extends actions", () => {
@@ -85,7 +85,7 @@ describe("blocks case", () => {
 			}`).json();
 
 		assert.equal(r.data.find_blocks[0].id, id);
-		assert.equal(r.data.find_blocks[0].transactions.length, 1);
-		assert.equal(r.data.find_blocks[0].transactions[0].actions.length, 3);
+		assert.equal(r.data.find_blocks[0].transactions.length, 2);
+		assert.equal(r.data.find_blocks[0].transactions[0].actions.length, 1);
 	});
 });

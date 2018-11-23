@@ -1,7 +1,7 @@
 const test = require('test');
 test.setup();
 
-let id = 11;
+let id = 40;
 
 describe("transactions case", () => {
 
@@ -79,14 +79,12 @@ describe("transactions case", () => {
 		assert.equal(r.data.transactions.actions[1].action_name, "buyrambytes");
 		assert.equal(r.data.transactions.actions[1].inline_actions[0].contract_name, "eosio.token");
 		assert.equal(r.data.transactions.actions[1].inline_actions[0].action_name, "transfer");
-		assert.equal(r.data.transactions.actions[1].inline_actions[0].data.quantity, "304.0097 FO");
 		assert.equal(r.data.transactions.actions[1].inline_actions[0].inline_actions.length, 2);
 
 
 		assert.equal(r.data.transactions.actions[2].action_name, "delegatebw");
 		assert.equal(r.data.transactions.actions[2].inline_actions[0].contract_name, "eosio.token");
 		assert.equal(r.data.transactions.actions[2].inline_actions[0].action_name, "transfer");
-		assert.equal(r.data.transactions.actions[2].inline_actions[0].data.quantity, "20.0000 FO");
 		assert.equal(r.data.transactions.actions[2].inline_actions[0].inline_actions.length, 2);
 	});
 });
