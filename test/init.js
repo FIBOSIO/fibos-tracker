@@ -10,17 +10,13 @@ const tracker = new Tracker();
 
 tracker.diagram();
 
-tracker.queues.clear();
+tracker.Queues.clear();
 
-tracker.queues.put_transactions(mock_db.transaction.producer_block_id, mock_db.transaction);
-
-tracker.queues.put_block(mock_db.block.id, mock_db.block);
-
-tracker.queues.revers(mock_db.irreversible_block.id, mock_db.irreversible_block);
+for (var k in mock_db) {
+	tracker.Queues.put(k, mock_db[k]);
+}
 
 tracker.work();
-
-tracker.queues.hello();
 
 let httpServer = new http.Server("", 8080, [
 	(req) => {

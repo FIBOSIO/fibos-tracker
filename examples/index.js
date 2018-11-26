@@ -68,7 +68,7 @@ Tracker.Config.isSyncSystemBlock = true;
 
 const tracker = new Tracker();
 
-tracker.queues.clear();
+tracker.Queues.clear();
 
 tracker.use(require("./addons/eosio_token_transfers.js"));
 
