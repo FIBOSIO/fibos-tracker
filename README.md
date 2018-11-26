@@ -272,6 +272,21 @@ hooks 的 messages 数据说明：
 
 ```
 
+#### tracker.Queues
+
+tracker 在处理事件数据时，会优先存入队列，当你恢复数据、重置环境时建议清理环境
+
+示例：
+
+```
+const fibos = require("fibos");
+const Tracker = require("fibos-tracker");
+const tracker = new Tracker();
+
+tracker.Queues.clear(); //清理队列数据
+
+tracker.Queues.stats(); //输出队列统计信息
+```
 
 ## Example 快速应用
 
