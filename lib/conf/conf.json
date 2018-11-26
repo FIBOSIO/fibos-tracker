@@ -1,5 +1,5 @@
 {
 	"DBconnString": "sqlite:./fibos_chain.db",
-	"isFilterInvalidBlock": true,
-	"enableSystemData": false
+	"isFilterNullBlock": true,
+	"isSyncSystemBlock": false
 }

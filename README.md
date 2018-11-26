@@ -108,14 +108,15 @@ const Tracker = require("fibos-tracker");
 
 Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
 
-Tracker.Config.isFilterInvalidBlock = false;
+Tracker.Config.isFilterNullBlock = false;
 
 ```
 
 | name                 | desc |	default|
 |---------------------|--------|------------|
 | DBconnString | 数据存储引擎    | 默认使用 SQLite 存储引擎    |
-| isFilterInvalidBlock | 是否过滤空块   | 默认 true  |
+| isFilterNullBlock | 是否过滤空块   | 默认 true  |
+| isSyncSystemBlock | 是否存储默认数据   | 默认 false  |
 
 #### tracker.app
 

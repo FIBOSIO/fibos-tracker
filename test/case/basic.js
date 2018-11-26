@@ -9,17 +9,17 @@ describe("basic case", () => {
 
 		let config = App.Config;
 
-		["DBconnString", "isFilterInvalidBlock"].forEach((k) => {
+		["DBconnString", "isFilterNullBlock", "isSyncSystemBlock"].forEach((k) => {
 			assert.notEqual(config[k], undefined);
 		});
 
-		App.Config.isFilterInvalidBlock = false;
+		App.Config.isFilterNullBlock = false;
 
 		config = App.Config;
 
-		assert.equal(config.isFilterInvalidBlock, false);
+		assert.equal(config.isFilterNullBlock, false);
 
-		["DBconnString", "isFilterInvalidBlock"].forEach((k) => {
+		["DBconnString", "isFilterNullBlock", "isSyncSystemBlock"].forEach((k) => {
 			assert.notEqual(config[k], undefined);
 		});
 	});
