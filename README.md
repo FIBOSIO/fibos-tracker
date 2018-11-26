@@ -319,7 +319,7 @@ Type ".help" for more information.
 [index.js](./examples/index.js):
 
 ```
-onst http = require("http");
+const http = require("http");
 const fibos = require("fibos");
 const Tracker = require("fibos-tracker");
 const tracker = new Tracker();

@@ -25,7 +25,7 @@ let setLogs = (logPath) => {
 		count: 128
 	}, {
 		type: "file",
-		levels: [console.INFO],
+		levels: [console.INFO, console.NOTICE],
 		path: logPath + "access.log",
 		split: "hour",
 		count: 128
