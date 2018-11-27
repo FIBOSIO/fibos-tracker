@@ -34,7 +34,7 @@ fibos-tracker 是一个 FIBOS 区块链数据 API 服务框架，基于 [fib-app
 
 ## FIBOS 版本支持
 
-支持: `v1.3.1.4+`
+支持: `v1.3.1.7+`
 
 快速安装: `curl -s https://fibos.io/download/installer.sh | sh`
 
@@ -53,7 +53,7 @@ fibos --install fibos-tracker
 
 ### fibos-tracker DB 说明
 
-框架默认存储了 blocks 以及 actions 的基础数据，如下图显示：
+框架默认存储了 blocks 、transactions 以及 actions 的基础数据，如下图显示：
 
 ![数据模型](./diagram.svg)
 
@@ -62,7 +62,7 @@ fibos --install fibos-tracker
 | 字段                 | 类型 |	备注|
 |---------------------|--------|------------|
 | id     | Number   | 自增长 id   |
-| block_num | Number    |   区块高度  |
+| block_num     | Number   | 区块高度   |
 | block_time | Date    |   区块时间  |
 | producer_block_id | String    |  区块 hash   |
 | producer | String    |   区块 producer  |
@@ -70,17 +70,28 @@ fibos --install fibos-tracker
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
 
+#### transactions 表数据
+
+| 字段                 | 类型 |	备注|
+|---------------------|--------|------------|
+| id     | Number   | 自增长 id  |
+| trx_id | String    |   交易 hash  |
+| rawData | JSON    |  原始数据   |
+| block_id | String    |   区块高度（关联 blocks）  |
+| createdAt | Date    |   记录创建时间  |
+| updatedAt | Date    |   记录更新时间  |
+
 #### actions 表数据
 
 | 字段                 | 类型 |	备注|
 |---------------------|--------|------------|
-| id     | Number   | 自增长 id   |
-| trx_id | String    |   交易 id  |
+| id     | Number   | 自增长 id  |
 | contract_name | String    |   合约名称  |
 | action | String    |  action 名称   |
 | authorization | Array    |   授权用户  |
 | data | JSON    |  交易 data   |
-| rawData | JSON    |  原始数据   |
+| transaction_id | Number    |   交易事务 id （关联 Table transactions）  |
+| parent_id | Number    |   上级 action id （关联 Table actions）  |
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
 
@@ -97,17 +108,15 @@ const Tracker = require("fibos-tracker");
 
 Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
 
-Tracker.Config.emitterNodePort = 8888;
+Tracker.Config.isFilterNullBlock = false;
 
-Tracker.Config.onblockEnable = true;
 ```
 
 | name                 | desc |	default|
 |---------------------|--------|------------|
 | DBconnString | 数据存储引擎    | 默认使用 SQLite 存储引擎    |
-| emitterNodePort | emitter RPC Port   | 默认访问端口 8870  |
-| onblockEnable | 是否记录空块    | false |
-
+| isFilterNullBlock | 是否过滤空块   | 默认 true  |
+| isSyncSystemBlock | 是否存储默认数据   | 默认 false  |
 
 #### tracker.app
 
@@ -141,22 +150,14 @@ const fibos = require("fibos");
 const Tracker = require("fibos-tracker");
 const tracker = new Tracker();
 
-fibos.load("emitter");
-
-let errCallback = (message, e) => {
-	console.error("erroCallback")
-};
-
-fibos.on('action', tracker.emitter(errCallback));
+tracker.emitter(fibos);
 
 ```
 
-tracker.emitter 参数 `errCallback` function. `errCallback` params:
 
 | params                 |type | desc |
 |---------------------|--------|--------|
-| message     | JSON |action 原始数据   |
-| e |  Object | emitter 执行过程的 Error 对象    |
+| fibos     | fibos 对象 |   |
 
 
 #### tracker.diagram
@@ -172,6 +173,19 @@ const tracker = new Tracker();
 //If exist other db modles，please exec tracker.use.
 
 tracker.diagram();
+```
+
+#### tracker.stop
+
+使 tracker 安全停止
+
+示例：
+
+```
+const Tracker = require("fibos-tracker");
+const tracker = new Tracker();
+
+tracker.stop();
 ```
 
 #### tracker.use
@@ -225,36 +239,30 @@ hooks 的过滤规则说明：
 
 hooks 的 messages 数据说明：
 
-由于 emitter 传递的数据是一个 actions，更多的时候 actions 内包含 一个或多个 inline_actions，并且以树型结构层叠。
-
 为了方便 hooks 业务研发，传递 messages 时做了优化：
 
 - 满足过滤规则的所有 action 合并成数组传递
 - 数组内每一个满足过滤规则的 action 包含 本层 action 以下所有 inline_action，并且如果存在上层 action，将携带 parent 属性，标识上层 parent 的 action 数据。
 
 
-注：每层 db_id 是该层 action 数据库 id。
+注：每层 `parent_id` 是该层 `action` 上级的 DB 自增长 id。
 
 举一个返回示例结构：
 
 ```
 [
   {
-    "db_id": 1,
     "inline_traces": [
       {
-        "db_id": 2,
-        "parent": ... db_id => 1
+        "parent": ... parent_id => 1
         "inline_traces": [
           {
-            "db_id": 3,
-            "parent": ... db_id => 2
-                "parent": ... db_id => 1
+            "parent": ... parent_id => 2
+                "parent": ... parent_id => 1
           },
           {
-            "db_id": 4,
-            "parent": ... db_id => 2
-                "parent": ... db_id => 1
+            "parent": ... parent_id => 2
+                "parent": ... parent_id => 1
           }
         ]
       }
@@ -264,6 +272,21 @@ hooks 的 messages 数据说明：
 
 ```
 
+#### tracker.Queues
+
+tracker 在处理事件数据时，会优先存入队列，当你恢复数据、重置环境时建议清理环境
+
+示例：
+
+```
+const fibos = require("fibos");
+const Tracker = require("fibos-tracker");
+const tracker = new Tracker();
+
+tracker.Queues.clear(); //清理队列数据
+
+tracker.Queues.stats(); //输出队列统计信息
+```
 
 ## Example 快速应用
 
@@ -293,7 +316,7 @@ $ fibos //Enter
 
 (不同 FIBOS 版本输出信息不一致)
 ```
-Welcome to FIBOS v1.3.1.3-3-g5f567ac. Based on fibjs 0.27.0-dev.
+Welcome to FIBOS v1.3.1.5-6-gde0f9da. Based on fibjs 0.27.0-dev.
 Type ".help" for more information.
 ```
 
@@ -312,7 +335,7 @@ Type ".help" for more information.
 [index.js](./examples/index.js):
 
 ```
-onst http = require("http");
+const http = require("http");
 const fibos = require("fibos");
 const Tracker = require("fibos-tracker");
 const tracker = new Tracker();
@@ -340,10 +363,7 @@ fibos.load("chain", {
 
 fibos.load("chain_api");
 
-fibos.load("emitter");
-fibos.on('action', tracker.emitter(() => {
-	console.log("emitter error callback!");
-}));
+tracker.emitter(fibos);
 
 fibos.start();
 
@@ -372,7 +392,7 @@ fibos index.js
 
 输出下列信息，说明启动成功，正在同步写入数据：
 ```
-putLog emitter-running: 1.54080331e+12ms
+len:0 unconfirmed:0 confirmed:0
 ```
 
 ### 使用 GraphQL 方式获取应用数据
@@ -444,7 +464,7 @@ graphql(`
 {
     find_blocks(
 		where:{
-			block_num: 23
+			id: 23
 		}
 	) {
         id,
@@ -455,13 +475,10 @@ graphql(`
 		status,
 		createdAt,
 		updatedAt,
-		actions{
+		transactions{
 			id,
 			trx_id,
-			contract_name,
-			action,
-			authorization,
-			data,
+			rawData,
 			createdAt,
 			updatedAt
 		}
@@ -541,7 +558,7 @@ let defines = [db => {
 
 ### 定义 hook 数据监听
 
-hook 监听的 messages 是一组系统 actions 表的 对象，请参考上面的 actions 表的数据表解释。
+hook 监听的 messages 是一组系统排序过滤后的原始区块数据。
 
 tracker.use 需要对 hook 的接受数据进行过滤。
 
@@ -552,7 +569,7 @@ let hooks = {
 		try {
 			db.trans(() => {
 				messages.forEach((m) => {
-					eosio_token_transfers.createSync(m.data);
+					eosio_token_transfers.createSync(m.act.data);
 				});
 			});
 		} catch (e) {

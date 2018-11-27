@@ -1,15 +1,17 @@
 {
 	"name": "fibos-tracker",
 	"main": "./lib/",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"description": "a tracking data and api service based on FIBOS/EOS blockchain nodes.",
-	"repository": "",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/FIBOSIO/fibos-tracker"
+	},
 	"keywords": "",
-	"author": "an.wu@d3j.io",
+	"author": "fibos",
 	"license": "ISC",
 	"dependencies": {
 		"fib-app": "1.10.0",
-		"fibos.js": "^0.3.1",
 		"viz.js": "1.8.0"
 	}
 }

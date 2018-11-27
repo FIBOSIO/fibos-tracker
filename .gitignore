@@ -1,3 +1,6 @@
 examples/data/
+examples/queue_cache_dir/
+examples/logs/
 *.db*
 node_modules
+logs/

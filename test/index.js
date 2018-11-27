@@ -1,3 +1,5 @@
+"use strict";
+
 const fs = require("fs");
 const test = require('test');
 const path = require("path");
@@ -9,9 +11,13 @@ const path = require("path");
 require("./init.js");
 require("../graphql.js");
 
-fs.readdir(path.join(__dirname, "./case"))
-	.filter(f => f.slice(-3) == ".js")
-	.forEach(f => run(`./case/${f}`));
+if (process.argv.length === 3) {
+	run(`./case/${process.argv[2]}`)
+} else {
+	fs.readdir(path.join(__dirname, "./case"))
+		.filter(f => f.slice(-3) == ".js")
+		.forEach(f => run(`./case/${f}`));
+}
 
 test.run(console.INFO);
 

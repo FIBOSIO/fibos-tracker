@@ -1,3 +1,5 @@
+"use strict";
+
 const test = require('test');
 test.setup();
 
@@ -9,17 +11,17 @@ describe("basic case", () => {
 
 		let config = App.Config;
 
-		["DBconnString", "emitterNodePort", "onblockEnable"].forEach((k) => {
+		["DBconnString", "isFilterNullBlock", "isSyncSystemBlock"].forEach((k) => {
 			assert.notEqual(config[k], undefined);
 		});
 
-		App.Config.onblockEnable = true;
+		App.Config.isFilterNullBlock = false;
 
 		config = App.Config;
 
-		assert.equal(config.onblockEnable, true);
+		assert.equal(config.isFilterNullBlock, false);
 
-		["DBconnString", "emitterNodePort", "onblockEnable"].forEach((k) => {
+		["DBconnString", "isFilterNullBlock", "isSyncSystemBlock"].forEach((k) => {
 			assert.notEqual(config[k], undefined);
 		});
 	});

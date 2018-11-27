@@ -1,8 +1,38 @@
 // [clean env]
+
 const fs = require("fs");
 ["", "\-shm", "\-wal"].forEach(function(k) {
 	if (fs.exists("./fibos_chain.db" + k)) fs.unlink("./fibos_chain.db" + k);
 });
+
+let setLogs = (logPath) => {
+	if (!fs.exists(logPath)) fs.mkdir(logPath);
+
+	console.add([{
+		type: "console",
+		levels: [console.FATAL, console.ALERT, console.CRIT, console.ERROR, console.WARN, console.NOTICE, console.INFO],
+	}, {
+		type: "file",
+		levels: [console.FATAL, console.ALERT, console.CRIT, console.ERROR],
+		path: logPath + "error.log",
+		split: "hour",
+		count: 128
+	}, {
+		type: "file",
+		levels: [console.WARN],
+		path: logPath + "warn.log",
+		split: "hour",
+		count: 128
+	}, {
+		type: "file",
+		levels: [console.INFO, console.NOTICE],
+		path: logPath + "access.log",
+		split: "hour",
+		count: 128
+	}]);
+}
+
+setLogs("./logs/");
 
 // [fibos]
 const fibos = require("fibos");
@@ -16,7 +46,7 @@ fibos.load("http", {
 });
 
 fibos.load("net", {
-	"p2p-peer-address": ["p2p-testnet.fibos.fo:9870"],
+	"p2p-peer-address": ["127.0.0.1:9801"],
 	"p2p-listen-endpoint": "0.0.0.0:9870"
 });
 
@@ -28,18 +58,21 @@ fibos.load("chain", {
 });
 
 fibos.load("chain_api");
-fibos.load("emitter");
 
 //[fibos-tracker]
 const Tracker = require("../");
+
 Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
+
+Tracker.Config.isSyncSystemBlock = true;
+
 const tracker = new Tracker();
+
+tracker.Queues.clear();
 
 tracker.use(require("./addons/eosio_token_transfers.js"));
 
-fibos.on('action', tracker.emitter((message, e) => {
-	// fibos.stop();
-}));
+tracker.emitter(fibos);
 
 fibos.start();
 

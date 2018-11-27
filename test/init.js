@@ -1,12 +1,24 @@
-const http = require("http");
-const Tracker = require("../");
+"use strict";
 
-// Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
+const http = require("http");
+const coroutine = require("coroutine");
+const Tracker = require("../");
+const mock_db = require("./mock_db.json");
+
+Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
+Tracker.Config.isSyncSystemBlock = true;
 
 const tracker = new Tracker();
-tracker.emitter(() => {})(require("./mock_db.json"));
 
 tracker.diagram();
+
+tracker.Queues.clear();
+
+for (var k in mock_db) {
+	tracker.Queues.put(k, mock_db[k]);
+}
+
+tracker.work();
 
 let httpServer = new http.Server("", 8080, [
 	(req) => {
