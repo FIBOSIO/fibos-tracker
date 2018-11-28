@@ -1,5 +1,6 @@
-{
-	"transaction": {
+[{
+	"event": "transaction",
+	"data": {
 		"id": "fd014b833d9b75c475926851afc94d6f0b2ecc189f9ed6a13533b1f40b34a73f",
 		"block_num": "34",
 		"block_time": "2018-11-21T06:21:39.000",
@@ -555,8 +556,10 @@
 			}]
 		}],
 		"except": null
-	},
-	"block": {
+	}
+}, {
+	"event": "block",
+	"data": {
 		"id": "000000224bfbbde97ce70f4cf6f7e27ffbc773f6d4eaac3112399fcf2e3c6eda",
 		"block_num": "34",
 		"header": {
@@ -652,8 +655,10 @@
 		},
 		"validated": false,
 		"in_current_chain": true
-	},
-	"irreversible_block": {
+	}
+}, {
+	"event": "irreversible_block",
+	"data": {
 		"id": "000000224bfbbde97ce70f4cf6f7e27ffbc773f6d4eaac3112399fcf2e3c6eda",
 		"block_num": "34",
 		"header": {
@@ -750,4 +755,4 @@
 		"validated": true,
 		"in_current_chain": true
 	}
-}
+}]

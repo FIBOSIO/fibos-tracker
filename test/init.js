@@ -14,9 +14,7 @@ tracker.diagram();
 
 tracker.Queues.clear();
 
-for (var k in mock_db) {
-	tracker.Queues.put(k, mock_db[k]);
-}
+tracker.Queues.put(mock_db);
 
 tracker.work();
 
