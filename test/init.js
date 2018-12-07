@@ -1,11 +1,12 @@
 "use strict";
 
 const http = require("http");
-const coroutine = require("coroutine");
 const Tracker = require("../");
 const mock_db = require("./mock_db.json");
 
-Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
+if (process.env.TEST_USE_MYSQL)
+	Tracker.Config.DBconnString = process.env.TEST_USE_MYSQL.startsWith('mysql://') ?  process.env.TEST_USE_MYSQL : "mysql://root:123456@127.0.0.1/fibos_chain";
+	
 Tracker.Config.isSyncSystemBlock = true;
 
 const tracker = new Tracker();
@@ -18,7 +19,9 @@ tracker.Queues.put(mock_db);
 
 tracker.work();
 
-let httpServer = new http.Server("", 8080, [
+const port = require('../port')
+
+let httpServer = new http.Server(port, [
 	(req) => {
 		req.session = {};
 	}, {

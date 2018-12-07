@@ -1,5 +1,8 @@
 # fibos-tracker
 
+[![NPM version](https://img.shields.io/npm/v/fibos-tracker.svg)](https://www.npmjs.org/package/fibos-tracker)
+[![Build Status](https://travis-ci.org/fibosio/fibos-tracker.svg)](https://travis-ci.org/fibosio/fibos-tracker)
+
 fibos-tracker 是一个 FIBOS 区块链数据 API 服务框架，基于 [fib-app](https://github.com/fibjs/fib-app) 框架实现.
 
 - 提供对 FIBOS 区块数据的 emitter 监听事件
