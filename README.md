@@ -15,6 +15,8 @@ fibos-tracker 是一个 FIBOS 区块链数据 API 服务框架，基于 [fib-app
 - [GraphQL](http://graphql.cn/)
 - [fib-app](https://github.com/fibjs/fib-app)
 
+**注意** 如果您使用的是 ubuntu, 请确保使用 16.04(xenial) 及其以上的版本.
+
 ## 目录
 
 <dl>
