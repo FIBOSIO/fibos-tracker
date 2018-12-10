@@ -26,7 +26,5 @@
 			"0.27.0-dev"
 		]
 	},
-	"devDependencies": {
-		"@fibjs/ci": "^2.1.0"
-	}
+	"devDependencies": {}
 }
