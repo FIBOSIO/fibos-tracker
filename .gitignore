@@ -4,3 +4,5 @@ examples/logs/
 *.db*
 node_modules
 logs/
+
+package-lock.json

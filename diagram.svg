@@ -16,7 +16,7 @@
 <polygon fill="#ffffff" stroke="#000000" points="0,-298.5 0,-422.5 130.758,-422.5 130.758,-298.5 0,-298.5"/>
 <text text-anchor="middle" x="65.379" y="-409.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">blocks</text>
 <polyline fill="none" stroke="#000000" points="0,-402.5 130.758,-402.5 "/>
-<text text-anchor="start" x="8" y="-389.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : serial</text>
+<text text-anchor="start" x="8" y="-389.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : number</text>
 <text text-anchor="start" x="8" y="-377.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ block_num : integer</text>
 <text text-anchor="start" x="8" y="-365.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ block_time : date</text>
 <text text-anchor="start" x="8" y="-353.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ producer_block_id : text</text>
@@ -34,7 +34,7 @@
 <polygon fill="#ffffff" stroke="#000000" points="16.383,-161.5 16.383,-249.5 114.375,-249.5 114.375,-161.5 16.383,-161.5"/>
 <text text-anchor="middle" x="65.379" y="-236.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">transactions</text>
 <polyline fill="none" stroke="#000000" points="16.383,-229.5 114.375,-229.5 "/>
-<text text-anchor="start" x="24.383" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : serial</text>
+<text text-anchor="start" x="24.383" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : number</text>
 <text text-anchor="start" x="24.383" y="-204.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ trx_id : text</text>
 <text text-anchor="start" x="24.383" y="-192.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ rawData : object</text>
 <text text-anchor="start" x="24.383" y="-180.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ createdAt : date</text>
@@ -63,7 +63,7 @@
 <polygon fill="#ffffff" stroke="#000000" points="6.945,-.5 6.945,-112.5 123.813,-112.5 123.813,-.5 6.945,-.5"/>
 <text text-anchor="middle" x="65.379" y="-99.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">actions</text>
 <polyline fill="none" stroke="#000000" points="6.945,-92.5 123.813,-92.5 "/>
-<text text-anchor="start" x="14.945" y="-79.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : serial</text>
+<text text-anchor="start" x="14.945" y="-79.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : number</text>
 <text text-anchor="start" x="14.945" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ contract_name : text</text>
 <text text-anchor="start" x="14.945" y="-55.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ action_name : text</text>
 <text text-anchor="start" x="14.945" y="-43.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ authorization : object</text>

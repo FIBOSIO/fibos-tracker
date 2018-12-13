@@ -18,7 +18,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@fibjs/detect-port": "^1.0.2",
-		"fib-app": "^1.13.7"
+		"fib-app": "^1.13.10"
 	},
 	"ci": {
 		"type": "travis",
