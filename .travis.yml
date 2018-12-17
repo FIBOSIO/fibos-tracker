@@ -1,0 +1,22 @@
+language: node_js
+node_js: '6'
+matrix:
+  include:
+    - os: linux
+      env:
+        - VERSION=0.27.0-dev
+    - os: osx
+      osx_image: xcode9
+      env:
+        - VERSION=0.27.0-dev
+
+dist: xenial
+before_install:
+  - OS=linux
+script:
+  - mkdir -p ./node_modules/.bin
+  - curl -s https://fibos.io/download/installer.sh | sh
+  - cp /usr/local/bin/fibos ./node_modules/.bin/fibos
+  - chmod a+x ./node_modules/.bin/fibos
+  - npm i
+  - npm run ci

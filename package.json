@@ -3,15 +3,28 @@
 	"main": "./lib/",
 	"version": "1.2.0",
 	"description": "a tracking data and api service based on FIBOS/EOS blockchain nodes.",
+	"scripts": {
+		"test": "fibos test",
+		"ci": "npm run test"
+	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/FIBOSIO/fibos-tracker"
 	},
-	"keywords": "",
+	"keywords": [
+		"fibos"
+	],
 	"author": "fibos",
 	"license": "ISC",
 	"dependencies": {
-		"fib-app": "1.10.0",
-		"viz.js": "1.8.0"
-	}
+		"@fibjs/detect-port": "^1.0.2",
+		"fib-app": "^1.13.10"
+	},
+	"ci": {
+		"type": "travis",
+		"version": [
+			"0.27.0-dev"
+		]
+	},
+	"devDependencies": {}
 }
