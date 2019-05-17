@@ -5,17 +5,11 @@ const Tracker = require("../");
 const mock_db = require("./mock_db.json");
 
 if (process.env.TEST_USE_MYSQL)
-	Tracker.Config.DBconnString = process.env.TEST_USE_MYSQL.startsWith('mysql://') ?  process.env.TEST_USE_MYSQL : "mysql://root:123456@127.0.0.1/fibos_chain";
-	
-Tracker.Config.isSyncSystemBlock = true;
+	Tracker.Config.DBconnString = process.env.TEST_USE_MYSQL.startsWith('mysql://') ?  process.env.TEST_USE_MYSQL : "mysql://root:123456@127.0.0.1/fibos_chain";	
 
 const tracker = new Tracker();
 
 tracker.diagram();
-
-tracker.Queues.clear();
-
-tracker.Queues.put(mock_db);
 
 tracker.work();
 

@@ -39,7 +39,7 @@ fibos-tracker 是一个 FIBOS 区块链数据 API 服务框架，基于 [fib-app
 
 ## FIBOS 版本支持
 
-支持: `v1.3.1.7+`
+支持: `v1.5.4.4+`
 
 快速安装: `curl -s https://fibos.io/download/installer.sh | sh`
 
@@ -58,7 +58,7 @@ fibos --install fibos-tracker
 
 ### fibos-tracker DB 说明
 
-框架默认存储了 blocks 、transactions 以及 actions 的基础数据，如下图显示：
+框架默认存储了 blocks 、transactions 的基础数据，如下图显示：
 
 ![数据模型](./diagram.svg)
 
@@ -82,7 +82,7 @@ fibos --install fibos-tracker
 | id     | Number   | 自增长 id  |
 | trx_id | String    |   交易 hash  |
 | rawData | JSON    |  原始数据   |
-| block_id | String    |   区块高度（关联 blocks）  |
+| producer_block_id | String    |  区块 hash   |
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
 
@@ -113,15 +113,12 @@ const Tracker = require("fibos-tracker");
 
 Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
 
-Tracker.Config.isFilterNullBlock = false;
 
 ```
 
 | name                 | desc |	default|
 |---------------------|--------|------------|
 | DBconnString | 数据存储引擎    | 默认使用 SQLite 存储引擎    |
-| isFilterNullBlock | 是否过滤空块   | 默认 true  |
-| isSyncSystemBlock | 是否存储默认数据   | 默认 false  |
 
 #### tracker.app
 
@@ -321,7 +318,7 @@ $ fibos //Enter
 
 (不同 FIBOS 版本输出信息不一致)
 ```
-Welcome to FIBOS v1.3.1.5-6-gde0f9da. Based on fibjs 0.27.0-dev.
+Welcome to FIBOS v1.5.4.4 Based on fibjs 0.27.0-dev.
 Type ".help" for more information.
 ```
 
