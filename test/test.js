@@ -62,5 +62,4 @@ Tracker.Config.DBconnString = config.DBconnString;
 const tracker = new Tracker();
 tracker.emitter(fibos);
 
-tracker.work();
 fibos.start();
