@@ -6,7 +6,6 @@ test.setup();
 let id = 1;
 
 describe("blocks case", () => {
-
 	it("find blocks list", () => {
 		let r = graphql(`
 			{
@@ -16,6 +15,7 @@ describe("blocks case", () => {
 					order: "-id"
 				){
 					id,
+					block_num,
 					block_time,
 					producer_block_id,
 					producer,
@@ -26,68 +26,8 @@ describe("blocks case", () => {
 			}`).json();
 
 		assert.equal(r.data.find_blocks.length, 1);
-	});
-
-	it("get transactions", () => {
-		let r = graphql(`
-		{
-			blocks(id:"${id}") {
-				id,
-				block_time,
-				producer_block_id,
-				producer,
-				status,
-				createdAt,
-				updatedAt,
-				transactions {
-					id,
-					trx_id,
-					rawData,
-					createdAt,
-					updatedAt
-					}
-				}
-			}`).json();
-
-		assert.equal(r.data.blocks.id, id);
-		assert.equal(r.data.blocks.transactions.length, 1);
-	});
-
-	it("find extends actions", () => {
-		let r = graphql(`
-		{
-			find_blocks(
-				where:{
-					id: "${id}"
-				}
-			) {
-				id,
-				block_time,
-				producer_block_id,
-				producer,
-				status,
-				createdAt,
-				updatedAt,
-				transactions {
-					id,
-					trx_id,
-					actions {
-						id,
-						contract_name,
-						action_name,
-						authorization,
-						data,
-						createdAt,
-						updatedAt
-					},
-					createdAt,
-					updatedAt
-					}
-				}
-			}`).json();
-
 		assert.equal(r.data.find_blocks[0].id, id);
-		assert.equal(r.data.find_blocks[0].transactions.length, 1);
-		assert.equal(r.data.find_blocks[0].transactions[0].actions.length, 3);
+		assert.equal(r.data.find_blocks[0].block_num, 7);
+		assert.equal(r.data.find_blocks[0].status, "reversible");
 	});
 });

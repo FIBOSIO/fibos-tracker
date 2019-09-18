@@ -13,80 +13,17 @@ describe("transactions case", () => {
 			transactions(id:"${id}") {
 				id,
 				trx_id,
+				producer_block_id,
+				rawData,
 				createdAt,
-				updatedAt,
-				actions {
-					id,
-					contract_name,
-					action_name,
-					authorization,
-					data,
-					createdAt,
-					updatedAt
-					}
-				}
-			}`).json();
-
+				updatedAt
+			}
+		}`).json();
 		assert.equal(r.data.transactions.id, id);
-		assert.equal(r.data.transactions.actions.length, 3);
-
-		assert.equal(r.data.transactions.actions[0].contract_name, "eosio");
-		assert.equal(r.data.transactions.actions[0].action_name, "newaccount");
-		assert.equal(r.data.transactions.actions[1].action_name, "buyrambytes");
-		assert.equal(r.data.transactions.actions[2].action_name, "delegatebw");
-
-	});
-
-	it("find extends actions and inline_actions", () => {
-		let r = graphql(`
-		{
-			transactions(id:"${id}") {
-				id,
-				trx_id,
-				createdAt,
-				updatedAt,
-				actions {
-					id,
-					contract_name,
-					action_name,
-					authorization,
-					data,
-					createdAt,
-					updatedAt
-					inline_actions{
-							id,
-							contract_name,
-							action_name,
-							authorization,
-							data,
-							createdAt,
-							updatedAt,
-							inline_actions{
-								id,
-								contract_name,
-								action_name,
-								authorization,
-								data,
-								createdAt,
-								updatedAt
-							}
-						}
-					}
-				}
-			}`).json();
-
-		assert.equal(r.data.transactions.actions[0].action_name, "newaccount");
-		assert.equal(r.data.transactions.actions[0].inline_actions.length, 0);
-
-		assert.equal(r.data.transactions.actions[1].action_name, "buyrambytes");
-		assert.equal(r.data.transactions.actions[1].inline_actions[0].contract_name, "eosio.token");
-		assert.equal(r.data.transactions.actions[1].inline_actions[0].action_name, "transfer");
-		assert.equal(r.data.transactions.actions[1].inline_actions[0].inline_actions.length, 2);
-
-
-		assert.equal(r.data.transactions.actions[2].action_name, "delegatebw");
-		assert.equal(r.data.transactions.actions[2].inline_actions[0].contract_name, "eosio.token");
-		assert.equal(r.data.transactions.actions[2].inline_actions[0].action_name, "transfer");
-		assert.equal(r.data.transactions.actions[2].inline_actions[0].inline_actions.length, 2);
+		assert.equal(r.data.transactions.trx_id, "e3630fe0f0082de9fcbf639ae447f41ccd61f27ec650e1f18939fad93c59323f");
+		assert.equal(r.data.transactions.producer_block_id, "00000007424f34aeec0277755004ac9a8462ed0a9087bbd12de4ba68d76d9e10");
+		assert.equal(r.data.transactions.rawData.action_traces.length, 1);
+		assert.equal(r.data.transactions.rawData.block_num, 7);
+		assert.equal(r.data.transactions.rawData.id, "e3630fe0f0082de9fcbf639ae447f41ccd61f27ec650e1f18939fad93c59323f");
 	});
 });
