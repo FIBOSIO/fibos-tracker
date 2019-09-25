@@ -39,7 +39,7 @@ fibos-tracker 是一个 FIBOS 区块链数据 API 服务框架，基于 [fib-app
 
 ## FIBOS 版本支持
 
-支持: `v1.5.4.4+`
+支持: `v1.7.1.9+`
 
 快速安装: `curl -s https://fibos.io/download/installer.sh | sh`
 
@@ -71,6 +71,7 @@ fibos --install fibos-tracker
 | block_time | Date    |   区块时间  |
 | producer_block_id | String    |  区块 hash   |
 | producer | String    |   区块 producer  |
+| previous | String | 上一块 hash |
 | status | String    |  可逆状态   |
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
@@ -86,20 +87,6 @@ fibos --install fibos-tracker
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
 
-#### actions 表数据
-
-| 字段                 | 类型 |	备注|
-|---------------------|--------|------------|
-| id     | Number   | 自增长 id  |
-| contract_name | String    |   合约名称  |
-| action | String    |  action 名称   |
-| authorization | Array    |   授权用户  |
-| data | JSON    |  交易 data   |
-| transaction_id | Number    |   交易事务 id （关联 Table transactions）  |
-| parent_id | Number    |   上级 action id （关联 Table actions）  |
-| createdAt | Date    |   记录创建时间  |
-| updatedAt | Date    |   记录更新时间  |
-
 ### fibos-tracker API 介绍
 
 ####  Tracker.Config
@@ -112,6 +99,8 @@ Config 是 Tracker 全局属性，可以使用该属性快速修改配置，如�
 const Tracker = require("fibos-tracker");
 
 Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
+Tracker.Config.replay = true;
+Tracker.Config.replayStatrBn = 1000;
 
 
 ```
@@ -119,6 +108,8 @@ Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
 | name                 | desc |	default|
 |---------------------|--------|------------|
 | DBconnString | 数据存储引擎    | 默认使用 SQLite 存储引擎    |
+| replay | 是否开启 DB replay | false |
+| replayStatrBn | DB replay 指定高度(需要配合replay) | 0 |
 
 #### tracker.app
 

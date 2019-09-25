@@ -47,6 +47,12 @@ let hooks = {
 		} catch (e) {
 			console.error("eosio.token/transfer Error:", e);
 		}
+	},
+	"reversible:eosio.token/transfer": (db, messages) => {
+		console.log('block data: %s', messages.length);
+	},
+	"noreversible:eosio.token/transfer": (db, messages) => {
+		console.log('noreversible data: %s', messages.length);
 	}
 }
 
