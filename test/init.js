@@ -12,8 +12,8 @@ const tracker = new Tracker();
 tracker.diagram();
 
 fibos.on = (tr) => {
-	tr.block(mock_db.block);
 	tr.transaction(mock_db.transaction);
+	tr.block(mock_db.block);
 }
 
 tracker.emitter(fibos);
