@@ -143,14 +143,9 @@ const fibos = require("fibos");
 const Tracker = require("fibos-tracker");
 const tracker = new Tracker();
 
-tracker.emitter(fibos);
+tracker.emitter();
 
 ```
-
-
-| params                 |type | desc |
-|---------------------|--------|--------|
-| fibos     | fibos 对象 |   |
 
 
 #### tracker.diagram
@@ -265,22 +260,6 @@ hooks 的 messages 数据说明：
 
 ```
 
-#### tracker.Queues
-
-tracker 在处理事件数据时，会优先存入队列，当你恢复数据、重置环境时建议清理环境
-
-示例：
-
-```
-const fibos = require("fibos");
-const Tracker = require("fibos-tracker");
-const tracker = new Tracker();
-
-tracker.Queues.clear(); //清理队列数据
-
-tracker.Queues.stats(); //输出队列统计信息
-```
-
 ## Example 快速应用
 
 [Example 源码](./examples)
@@ -309,7 +288,7 @@ $ fibos //Enter
 
 (不同 FIBOS 版本输出信息不一致)
 ```
-Welcome to FIBOS v1.5.4.4 Based on fibjs 0.27.0-dev.
+Welcome to FIBOS v1.7.1.8 Based on fibjs 0.29.0-dev.
 Type ".help" for more information.
 ```
 
@@ -356,7 +335,7 @@ fibos.load("chain", {
 
 fibos.load("chain_api");
 
-tracker.emitter(fibos);
+tracker.emitter();
 
 fibos.start();
 
@@ -381,11 +360,6 @@ httpServer.asyncRun();
 
 ```
 fibos index.js
-```
-
-输出下列信息，说明启动成功，正在同步写入数据：
-```
-len:0 unconfirmed:0 confirmed:0
 ```
 
 ### 使用 GraphQL 方式获取应用数据
