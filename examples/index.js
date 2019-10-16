@@ -69,8 +69,7 @@ Tracker.Config.DBconnString = "mysql://root:123456@127.0.0.1/fibos_chain";
 const tracker = new Tracker();
 
 tracker.use(require("./addons/eosio_token_transfers.js"));
-
-tracker.emitter(fibos);
+tracker.emitter();
 
 fibos.start();
 
