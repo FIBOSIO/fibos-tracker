@@ -9,12 +9,12 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 141)">
 <title>%0</title>
 <polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-141 283.758,-141 283.758,4 -4,4"/>
-<!-- blocks -->
+<!-- tracker_blocks -->
 <g id="node1" class="node">
-<title>blocks</title>
-<g id="a_node1"><a xlink:title="blocks">
+<title>tracker_blocks</title>
+<g id="a_node1"><a xlink:title="tracker_blocks">
 <polygon fill="#ffffff" stroke="#000000" points="0,-.5 0,-136.5 130.758,-136.5 130.758,-.5 0,-.5"/>
-<text text-anchor="middle" x="65.379" y="-123.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">blocks</text>
+<text text-anchor="middle" x="65.379" y="-123.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tracker_blocks</text>
 <polyline fill="none" stroke="#000000" points="0,-116.5 130.758,-116.5 "/>
 <text text-anchor="start" x="8" y="-103.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : serial</text>
 <text text-anchor="start" x="8" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ block_num : integer</text>
@@ -28,19 +28,20 @@
 </a>
 </g>
 </g>
-<!-- transactions -->
+<!-- tracker_transactions -->
 <g id="node2" class="node">
-<title>transactions</title>
-<g id="a_node2"><a xlink:title="transactions">
-<polygon fill="#ffffff" stroke="#000000" points="149,-18.5 149,-118.5 279.758,-118.5 279.758,-18.5 149,-18.5"/>
-<text text-anchor="middle" x="214.379" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">transactions</text>
-<polyline fill="none" stroke="#000000" points="149,-98.5 279.758,-98.5 "/>
-<text text-anchor="start" x="157" y="-85.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : serial</text>
-<text text-anchor="start" x="157" y="-73.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ producer_block_id : text</text>
-<text text-anchor="start" x="157" y="-61.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ trx_id : text</text>
-<text text-anchor="start" x="157" y="-49.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ rawData : object</text>
-<text text-anchor="start" x="157" y="-37.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ createdAt : date</text>
-<text text-anchor="start" x="157" y="-25.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ updatedAt : date</text>
+<title>tracker_transactions</title>
+<g id="a_node2"><a xlink:title="tracker_transactions">
+<polygon fill="#ffffff" stroke="#000000" points="149,-12.5 149,-124.5 279.758,-124.5 279.758,-12.5 149,-12.5"/>
+<text text-anchor="middle" x="214.379" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">tracker_transactions</text>
+<polyline fill="none" stroke="#000000" points="149,-104.5 279.758,-104.5 "/>
+<text text-anchor="start" x="157" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ id : serial</text>
+<text text-anchor="start" x="157" y="-79.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ producer_block_id : text</text>
+<text text-anchor="start" x="157" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ trx_id : text</text>
+<text text-anchor="start" x="157" y="-55.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ rawData : object</text>
+<text text-anchor="start" x="157" y="-43.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ contract_action : text</text>
+<text text-anchor="start" x="157" y="-31.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ createdAt : date</text>
+<text text-anchor="start" x="157" y="-19.5" font-family="Helvetica,sans-Serif" font-size="10.00" fill="#000000">+ updatedAt : date</text>
 </a>
 </g>
 </g>
