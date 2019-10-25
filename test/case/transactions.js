@@ -10,7 +10,7 @@ describe("transactions case", () => {
 	it("get transactions", () => {
 		let r = graphql(`
 		{
-			tracker_blocks(id:"${id}") {
+			fibos_transactions(id:"${id}") {
 				id,
 				trx_id,
 				producer_block_id,

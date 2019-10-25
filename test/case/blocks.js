@@ -9,7 +9,7 @@ describe("blocks case", () => {
 	it("find blocks list", () => {
 		let r = graphql(`
 			{
-				find_tracker_blocks(
+				find_fibos_blocks(
 					skip: 0,
 					limit: 10,
 					order: "-id"
