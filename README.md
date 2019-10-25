@@ -37,6 +37,23 @@ fibos-tracker 是一个 FIBOS 区块链数据 API 服务框架，基于 [fib-app
 <dd></dd>
 </dl>
 
+## 升级指南
+
+> 1.3.x -> 1.4.x
+
+fibos-tracker 从 1.4.x 版本起，修改了默认数据表结构&表名。
+
+执行以下 sql 语句进行表结构升级：
+
+```sql
+ALTER  TABLE  `transactions` RENAME TO `fibos_transactions`;
+ALTER  TABLE  `blocks` RENAME TO `fibos_blocks`;
+ALTER  TABLE `fibos_transactions` ADD `contract_action` varchar(64);
+ALTER  TABLE `fibos_transactions` ADD INDEX contract_action_index (contract_action);
+ALTER  TABLE `fibos_transactions` ADD `block_id` bigint(20) DEFAULT NULL;
+```
+
+
 ## FIBOS 版本支持
 
 支持: `v1.7.1.9+`
@@ -58,11 +75,11 @@ fibos --install fibos-tracker
 
 ### fibos-tracker DB 说明
 
-框架默认存储了 blocks 、transactions 的基础数据，如下图显示：
+框架默认存储了 fibos_blocks 、fibos_transactions 的基础数据，如下图显示：
 
 ![数据模型](./diagram.svg)
 
-#### blocks 表数据
+#### fibos_blocks 表数据
 
 | 字段                 | 类型 |	备注|
 |---------------------|--------|------------|
@@ -76,14 +93,16 @@ fibos --install fibos-tracker
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
 
-#### transactions 表数据
+#### fibos_transactions 表数据
 
 | 字段                 | 类型 |	备注|
 |---------------------|--------|------------|
-| id     | Number   | 自增长 id  |
+| id     | bigint   | 自增长 id  |
 | trx_id | String    |   交易 hash  |
 | rawData | JSON    |  原始数据   |
 | producer_block_id | String    |  区块 hash   |
+| contract_action | String | 合约/动作 |
+| block_id | bigint | 事务关联区块id |
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
 
@@ -407,7 +426,7 @@ let graphql = function(body) {
 ```
 graphql(`
 {
-    find_blocks(
+    find_fibos_blocks(
        	skip: 0,
         limit: 10,
         order: "-id"
@@ -429,7 +448,7 @@ graphql(`
 ```
 graphql(`
 {
-    find_blocks(
+    find_fibos_blocks(
 		where:{
 			id: 23
 		}
