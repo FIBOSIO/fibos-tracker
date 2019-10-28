@@ -53,6 +53,19 @@ ALTER  TABLE `fibos_transactions` ADD INDEX contract_action_index (contract_acti
 ALTER  TABLE `fibos_transactions` ADD `block_id` bigint(20) DEFAULT NULL;
 ```
 
+## 测试对比
+
+> 使用 FIBOS 主网数据进行 replay 测试，区块数据高度：70166754 机器性能：4核 8G 
+
+测试结果如下：
+
+| 测试方式 | 耗时 |
+| --- | --- |
+| 使用区块数据 replay | 12H |
+| 使用区块数据 + emitter 插件 replay | 12H |
+| 使用 fibos-tracker的 db replay | 1H |
+
+由上结果可以得知，使用 fibos-tracker 的 db replay 可以大大节省链下数据存储的时间。
 
 ## FIBOS 版本支持
 
