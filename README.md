@@ -88,7 +88,7 @@ fibos --install fibos-tracker
 
 ### fibos-tracker DB 说明
 
-框架默认存储了 fibos_blocks 、fibos_transactions 的基础数据，如下图显示：
+框架默认存储了 fibos_blocks 、fibos_transactions、fibos_actions 的基础数据，如下图显示：
 
 ![数据模型](./diagram.svg)
 
