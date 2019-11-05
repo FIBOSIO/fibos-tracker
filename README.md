@@ -119,6 +119,18 @@ fibos --install fibos-tracker
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
 
+#### fibos_actions 表数据
+
+| 字段 | 类型 | 备注 |
+| id | bigint | 自增长 id |
+| trx_id | String | 交易id |
+| rawData | JSON | action 对应的数据 |
+| contract_action | String | 合约/动作 |
+| transaction_id | String | 关联 transaction id |
+| parent_id | String | inline 上级id |
+| createdAt | Date    |   记录创建时间  |
+| updatedAt | Date    |   记录更新时间  |
+
 ### fibos-tracker API 介绍
 
 ####  Tracker.Config
