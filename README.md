@@ -53,6 +53,19 @@ ALTER  TABLE `fibos_transactions` ADD INDEX contract_action_index (contract_acti
 ALTER  TABLE `fibos_transactions` ADD `block_id` bigint(20) DEFAULT NULL;
 ```
 
+## 测试对比
+
+> 使用 FIBOS 主网数据进行 replay 测试，区块数据高度：70166754 机器性能：4核 8G 
+
+测试结果如下：
+
+| 测试方式 | 耗时 |
+| --- | --- |
+| 使用区块数据 replay | 12H |
+| 使用区块数据 + emitter 插件 replay | 12H |
+| 使用 fibos-tracker的 db replay | 1H |
+
+由上结果可以得知，使用 fibos-tracker 的 db replay 可以大大节省链下数据存储的时间。
 
 ## FIBOS 版本支持
 
@@ -75,7 +88,7 @@ fibos --install fibos-tracker
 
 ### fibos-tracker DB 说明
 
-框架默认存储了 fibos_blocks 、fibos_transactions 的基础数据，如下图显示：
+框架默认存储了 fibos_blocks 、fibos_transactions、fibos_actions 的基础数据，如下图显示：
 
 ![数据模型](./diagram.svg)
 
@@ -103,6 +116,18 @@ fibos --install fibos-tracker
 | producer_block_id | String    |  区块 hash   |
 | contract_action | String | 合约/动作 |
 | block_id | bigint | 事务关联区块id |
+| createdAt | Date    |   记录创建时间  |
+| updatedAt | Date    |   记录更新时间  |
+
+#### fibos_actions 表数据
+
+| 字段 | 类型 | 备注 |
+| id | bigint | 自增长 id |
+| trx_id | String | 交易id |
+| rawData | JSON | action 对应的数据 |
+| contract_action | String | 合约/动作 |
+| transaction_id | String | 关联 transaction id |
+| parent_id | String | inline 上级id |
 | createdAt | Date    |   记录创建时间  |
 | updatedAt | Date    |   记录更新时间  |
 
